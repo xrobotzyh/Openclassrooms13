@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django.urls import path
 
-from .views import index, lettings_index, letting, profile, profiles_index
+from lettings.views import index, lettings_index, letting
+from profiles.views import profile, profiles_index
 
 urlpatterns = [
     path('', index, name='index'),
