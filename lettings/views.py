@@ -30,11 +30,13 @@ def index(request):
 # eget bibendum lorem. Sed non dolor risus. Mauris condimentum auctor elementum. Donec quis nisi
 # ligula. Integer vehicula tincidunt enim, ac lacinia augue pulvinar sit amet.
 def letting(request, letting_id):
-    letting = Letting.objects.get(id=letting_id)
+    try:
+        letting = Letting.objects.get(id=letting_id)
+    except Letting.DoesNotExist:
+        return render(request, '404_page.html')
+
     context = {
         'title': letting.title,
         'address': letting.address,
     }
     return render(request, 'lettings/letting.html', context)
-
-# Create your views here.

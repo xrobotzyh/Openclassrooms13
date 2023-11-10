@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 
-from .views import index
+from .views import index, page_404
 
 urlpatterns = [
     path('', index, name='index'),
@@ -9,3 +9,4 @@ urlpatterns = [
     path('profiles/', include('profiles.urls')),
     path('admin/', admin.site.urls),
 ]
+handler404 = page_404
