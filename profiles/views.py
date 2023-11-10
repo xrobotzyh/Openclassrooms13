@@ -7,6 +7,12 @@ from profiles.models import Profile
 # pulvinar eget. Fusc faucibus, urna quis auctor pharaoh, massa dolor cursus neque, quis dictum
 # lacus d
 def index(request):
+    """
+    View function for profiles app's index page.
+    Parameters: request: The HTTP request object.
+    Returns:HttpResponse: The HTTP response object , rendering the 'index.html' template with
+                context contains a list of all profile's objects.
+    """
     profiles_list = Profile.objects.all()
     context = {'profiles_list': profiles_list}
     return render(request, 'profiles/index.html', context)
@@ -17,6 +23,13 @@ def index(request):
 # fringilla, eros leo tristique lacus, it. Nam aliquam dignissim congue. Pellentesque habitant
 # morbi tristique senectus et netus et males
 def profile(request, username):
+    """
+    View function for profiles app's profile element page.
+    Parameters: request: The HTTP request object.
+    Returns:HttpResponse: The HTTP response object , rendering the 'profile.html' template with
+            context contains a profile object's each element's details, if profile object's not
+            found,then render 404 error page
+    """
     try:
         profile = Profile.objects.get(user__username=username)
     except Profile.DoesNotExist:

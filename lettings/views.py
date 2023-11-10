@@ -15,6 +15,12 @@ from lettings.models import Letting
 # massa. Integer est nunc, pulvinar a tempor et, bibendum id arcu. Vestibulum ante ipsum primis
 # in faucibus orci luctus et ultrices posuere cubilia curae; Cras eget scelerisque
 def index(request):
+    """
+    View function for lettings app's index page.
+    Parameters: request: The HTTP request object.
+    Returns:HttpResponse: The HTTP response object , rendering the 'index.html' template with
+            context contains a list of all letting objects.
+    """
     lettings_list = Letting.objects.all()
     context = {'lettings_list': lettings_list}
     return render(request, 'lettings/index.html', context)
@@ -30,6 +36,13 @@ def index(request):
 # eget bibendum lorem. Sed non dolor risus. Mauris condimentum auctor elementum. Donec quis nisi
 # ligula. Integer vehicula tincidunt enim, ac lacinia augue pulvinar sit amet.
 def letting(request, letting_id):
+    """
+    View function for lettings app's letting element page.
+    Parameters: request: The HTTP request object.
+    Returns:HttpResponse: The HTTP response object , rendering the 'letting.html' template with
+            context contains a letting object's each element's details, if letting object's not
+            found,then render 404 error page
+    """
     try:
         letting = Letting.objects.get(id=letting_id)
     except Letting.DoesNotExist:
