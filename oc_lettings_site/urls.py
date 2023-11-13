@@ -3,11 +3,18 @@ from django.urls import path, include
 
 from .views import index, page_404, page_500
 
+
+def trigger_error(request):
+    division_by_zero = 1 / 0
+    return division_by_zero
+
+
 urlpatterns = [
     path('', index, name='index'),
     path('lettings/', include('lettings.urls')),
     path('profiles/', include('profiles.urls')),
     path('admin/', admin.site.urls),
+    path('sentry-debug/', trigger_error),
 ]
 handler404 = page_404
 handler500 = page_500
