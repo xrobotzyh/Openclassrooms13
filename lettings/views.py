@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import render
 
 from lettings.models import Letting
@@ -46,10 +47,12 @@ def letting(request, letting_id):
     try:
         letting = Letting.objects.get(id=letting_id)
     except Letting.DoesNotExist:
-        return render(request, '404_page.html')
+        return render(request, '404_page.html', status=404)
+        # raise Http404
 
     context = {
         'title': letting.title,
         'address': letting.address,
     }
+    # a = context['i']
     return render(request, 'lettings/letting.html', context)

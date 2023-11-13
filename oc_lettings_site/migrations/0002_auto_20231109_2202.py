@@ -2,6 +2,9 @@ from django.db import migrations
 
 
 def migrate_datas(apps, schema_editor):
+    """
+
+    """
     old_address = apps.get_model('oc_lettings_site', 'Address')
     old_letting = apps.get_model('oc_lettings_site', 'Letting')
     old_profile = apps.get_model('oc_lettings_site', 'Profile')
