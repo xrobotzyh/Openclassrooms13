@@ -1,6 +1,7 @@
 import os
-
 from pathlib import Path
+
+import sentry_sdk
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -110,7 +111,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static", ]
 
 # settings.py
-import sentry_sdk
 
 sentry_sdk.init(
     dsn="https://d4bce2e7e89d04ffb277faaa251a998d@o4506073358073856.ingest.sentry.io"
@@ -123,3 +123,34 @@ sentry_sdk.init(
     # We recommend adjusting this value in production.
     profiles_sample_rate=1.0,
 )
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "simple": {
+            "format": "{levelname} {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "file": {
+            "level": "WARNING",
+            "class": "logging.FileHandler",
+            "filename": os.path.join(BASE_DIR, 'error.log'),
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
+
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["file", 'console'],
+            "level": "DEBUG",
+            "propagate": True,
+        },
+    },
+}

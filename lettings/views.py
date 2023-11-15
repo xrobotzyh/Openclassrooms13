@@ -1,5 +1,6 @@
 from django.http import Http404
 from django.shortcuts import render
+import logging
 
 from lettings.models import Letting
 
@@ -22,7 +23,14 @@ def index(request):
     Returns:HttpResponse: The HTTP response object , rendering the 'index.html' template with
             context contains a list of all letting objects.
     """
+    logger = logging.getLogger('django')
     lettings_list = Letting.objects.all()
+
+    if lettings_list:
+        logger.info(f'The lettings info loaded successfully')
+    else:
+        logger.warning(f'There are no available lettings')
+
     context = {'lettings_list': lettings_list}
     return render(request, 'lettings/index.html', context)
 
@@ -44,11 +52,12 @@ def letting(request, letting_id):
             context contains a letting object's each element's details, if letting object's not
             found,then render 404 error page
     """
+    logger = logging.getLogger('django')
     try:
         letting = Letting.objects.get(id=letting_id)
     except Letting.DoesNotExist:
+        logger.error(f'The letting id does not exist')
         return render(request, '404_page.html', status=404)
-        # raise Http404
 
     context = {
         'title': letting.title,

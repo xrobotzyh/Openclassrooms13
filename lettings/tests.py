@@ -60,6 +60,8 @@ class MyLettingsIntegrationTest(TestCase):
         assert response.status_code == 200
         assert b'test' in response.content
 
+        # ????pour redirection ici il faut rajouter follow sinon 301,test_none_letting_object_
+        # can_be_opend pas besoin?
         response = self.client.get('profiles/didi/', follow=True)
         assert response.status_code == 404
         assert b'The page you request is not found !' in response.content
