@@ -42,7 +42,6 @@ def profile(request, username):
     try:
         profile = Profile.objects.get(user__username=username)
     except Profile.DoesNotExist:
-        #???? ici comme logger.warning, pourquoi sur error.log,il ny a pas cette pharse?
         logger.warning(f'The username of profile does not exist')
         return render(request, '404_page.html', status=404)
     # profile = Profile.objects.get(user__username=username)

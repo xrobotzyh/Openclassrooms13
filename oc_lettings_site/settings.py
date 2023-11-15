@@ -1,7 +1,12 @@
+import logging
 import os
 from pathlib import Path
 
 import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+from dotenv import DotEnv
+
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -110,11 +115,16 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static", ]
 
+# load the environment variable
+dotenv = DotEnv()
+# get the sentry dsn value from .env file
+SENTRY_DSN = dotenv.get('SENTRY_DSN')
+
 # settings.py
 
 sentry_sdk.init(
-    dsn="https://d4bce2e7e89d04ffb277faaa251a998d@o4506073358073856.ingest.sentry.io"
-        "/4506217992224768",
+    dsn=SENTRY_DSN,
+    integrations=[DjangoIntegration()],
     # Set traces_sample_rate to 1.0 to capture 100%
     # of transactions for performance monitoring.
     traces_sample_rate=1.0,
@@ -140,7 +150,7 @@ LOGGING = {
             "filename": os.path.join(BASE_DIR, 'error.log'),
         },
         'console': {
-            'level': 'DEBUG',
+            'level': 'INFO',
             'class': 'logging.StreamHandler',
             'formatter': 'simple',
         },
@@ -149,7 +159,7 @@ LOGGING = {
     "loggers": {
         "django": {
             "handlers": ["file", 'console'],
-            "level": "DEBUG",
+            "level": "INFO",
             "propagate": True,
         },
     },
