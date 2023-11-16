@@ -5,8 +5,6 @@ from pathlib import Path
 import sentry_sdk
 from dotenv import DotEnv
 
-
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -116,7 +114,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static", ]
-
 
 # get the sentry dsn value from .env file
 SENTRY_DSN = dotenv.get('SENTRY_DSN')
