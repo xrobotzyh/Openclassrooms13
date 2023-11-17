@@ -3,6 +3,8 @@ import logging
 
 from profiles.models import Profile
 
+logger = logging.getLogger(__name__)
+
 
 # Sed placerat quam in pulvinar commodo. Nullam laoreet consectetur ex, sed consequat libero
 # pulvinar eget. Fusc faucibus, urna quis auctor pharaoh, massa dolor cursus neque, quis dictum
@@ -14,7 +16,7 @@ def index(request):
     Returns:HttpResponse: The HTTP response object , rendering the 'index.html' template with
                 context contains a list of all profile's objects.
     """
-    logger = logging.getLogger('django')
+
     profiles_list = Profile.objects.all()
 
     if profiles_list:
@@ -38,11 +40,11 @@ def profile(request, username):
             context contains a profile object's each element's details, if profile object's not
             found,then render 404 error page
     """
-    logger = logging.getLogger('django')
+
     try:
         profile = Profile.objects.get(user__username=username)
     except Profile.DoesNotExist:
-        logger.warning(f'The username of profile does not exist')
+        logger.warning(f'The username={username} of profile does not exist')
         return render(request, '404_page.html', status=404)
     # profile = Profile.objects.get(user__username=username)
 

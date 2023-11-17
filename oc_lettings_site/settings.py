@@ -9,14 +9,11 @@ from dotenv import DotEnv
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # load the environment variable
-if not os.environ.get('SECRET_KEY'):
-    # get the sentry dsn value from .env file
-    dotenv = DotEnv()
-    SECRET_KEY = dotenv.get('SECRET_KEY')
-    SENTRY_DSN = dotenv.get('SENTRY_DSN')
-else:
-    SECRET_KEY = os.environ.get('SECRET_KEY')
-    SENTRY_DSN = os.environ.get('SENTRY_DSN')
+
+# get the sentry dsn value from .env file
+
+SECRET_KEY = os.environ['SECRET_KEY']
+SENTRY_DSN = os.environ.get('SENTRY_DSN')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -140,7 +137,7 @@ LOGGING = {
     "disable_existing_loggers": False,
     "formatters": {
         "simple": {
-            "format": "{levelname} {message}",
+            "format": "[{module}] [{levelname}] {message}",
             "style": "{",
         },
     },
@@ -160,6 +157,11 @@ LOGGING = {
     "loggers": {
         "django": {
             "handlers": ["file", 'console'],
+            "level": "INFO",
+            "propagate": True,
+        },
+        "root": {
+            "handlers": ['console'],
             "level": "INFO",
             "propagate": True,
         },

@@ -3,7 +3,7 @@ import logging
 
 from lettings.models import Letting
 
-
+logger = logging.getLogger(__name__)
 # Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie quam lobortis leo
 # consectetur ullamcorper non id est. Praesent dictum, nulla eget feugiat sagittis,
 # sem mi convallis eros, vitae dapibus nisi lorem dapibus sem. Maecenas pharetra purus ipsum,
@@ -22,7 +22,7 @@ def index(request):
     Returns:HttpResponse: The HTTP response object , rendering the 'index.html' template with
             context contains a list of all letting objects.
     """
-    logger = logging.getLogger('django')
+
     lettings_list = Letting.objects.all()
 
     if lettings_list:
@@ -51,9 +51,9 @@ def letting(request, letting_id):
             context contains a letting object's each element's details, if letting object's not
             found,then render 404 error page
     """
-    logger = logging.getLogger('django')
     try:
         letting = Letting.objects.get(id=letting_id)
+        logger.info('11111111')
     except Letting.DoesNotExist:
         logger.error(f'The letting id does not exist')
         return render(request, '404_page.html', status=404)
