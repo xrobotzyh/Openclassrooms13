@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # get the sentry dsn value from .env file
 
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = os.environ.get('SECRET_KEY')
 SENTRY_DSN = os.environ.get('SENTRY_DSN')
 
 # Quick-start development settings - unsuitable for production
