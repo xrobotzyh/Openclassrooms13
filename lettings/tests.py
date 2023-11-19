@@ -1,5 +1,6 @@
 # Create your tests here.
 from django.test import TestCase
+import os
 
 from .models import Letting, Address
 
@@ -35,4 +36,3 @@ class MyLettingsTestCase(TestCase):
         response = self.client.get('/lettings/2/')
         assert response.status_code == 404
         assert b'The page you request is not found !' in response.content
-

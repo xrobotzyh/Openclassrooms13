@@ -43,6 +43,7 @@ def profile(request, username):
 
     try:
         profile = Profile.objects.get(user__username=username)
+        logger.info(f'Get the username={username} successful')
     except Profile.DoesNotExist:
         logger.warning(f'The username={username} of profile does not exist')
         return render(request, '404_page.html', status=404)

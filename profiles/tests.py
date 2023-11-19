@@ -1,9 +1,10 @@
 from django.contrib.auth.models import User
 from django.test import TestCase
 from .models import Profile
+import os
 
 
-class MyProfilesUnitTestCase(TestCase):
+class MyProfilesTestCase(TestCase):
 
     def setUp(self):
         User.objects.create(username='fifi')

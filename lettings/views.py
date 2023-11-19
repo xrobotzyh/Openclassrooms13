@@ -53,7 +53,7 @@ def letting(request, letting_id):
     """
     try:
         letting = Letting.objects.get(id=letting_id)
-        logger.info('11111111')
+        logger.info(f'Get the letting_id={letting_id} successful')
     except Letting.DoesNotExist:
         logger.error(f'The letting id does not exist')
         return render(request, '404_page.html', status=404)
