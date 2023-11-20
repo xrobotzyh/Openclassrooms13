@@ -1,6 +1,8 @@
 import logging
 import os
+import sys
 from pathlib import Path
+# from dotenv import load_dotenv
 
 import sentry_sdk
 
@@ -8,10 +10,7 @@ import sentry_sdk
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # load the environment variable
-
-# get the sentry dsn value from .env file
-
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY', '1112312354')
 SENTRY_DSN = os.environ.get('SENTRY_DSN')
 
 # Quick-start development settings - unsuitable for production

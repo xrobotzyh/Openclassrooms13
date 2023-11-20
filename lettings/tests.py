@@ -1,12 +1,14 @@
 # Create your tests here.
-from django.test import TestCase
 import os
+
+import pytest
+from django.conf import settings
+from django.test import TestCase
 
 from .models import Letting, Address
 
 
 class MyLettingsTestCase(TestCase):
-
     def setUp(self):
         Address.objects.create(
             number=1,
