@@ -38,6 +38,17 @@ jobs:
           name: Run tests
           # This assumes pytest is installed via the install-package step above
           command: pytest
+      - to-dockerhub
+      - run:
+          name: build docker image
+          command: docker build -t xrobotzyh/openclassrooms13:latest .
+      - run:
+          name: login to the dockerhub
+          command: echo "$XROBOTZYH_PWD_DOCKERHUB" | docker login -u "$XROBOTZYH_DOCKERHUB" --password-stdin
+      - run:
+          name: push to dockerhub
+          command: docker push xrobotzyh/openclassrooms13:latest
+
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
