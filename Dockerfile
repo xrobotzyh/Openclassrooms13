@@ -2,19 +2,13 @@
 FROM cimg/python:3.9.13
 #set working directory
 WORKDIR /openclassrooms13
-#copy requirements
-COPY requirements.txt requirements.txt
+#copy files
+COPY  . /openclassrooms13/
 #install necessary packages
 RUN pip install -r requirements.txt
-COPY . .
 # import environment variables from circleci
-ARG SECRET_KEY
-ARG SECRET_DSN
-ENV SECRET_KEY=${SECRET_KEY}
-ENV SECRET_DSN=${SECRET_DSN}
+ENV PORT=8000
 # initial the database
 RUN python manage.py migrate
-# expose port 80000
-EXPOSE 8000
 # run the python project
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD python manage.py runserver 0.0.0.0:$PORT

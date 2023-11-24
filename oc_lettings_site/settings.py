@@ -9,7 +9,7 @@ import sentry_sdk
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # load the environment variable
-SECRET_KEY = os.environ.get('SECRET_KEY', '1112312354')
+SECRET_KEY = os.environ.get('SECRET_KEY', 'a+p=vk$=e#o191zfib_ekmz=1(&sb6$*t!e65n6zxpa*_eyaik')
 SENTRY_DSN = os.environ.get('SENTRY_DSN')
 
 # Quick-start development settings - unsuitable for production

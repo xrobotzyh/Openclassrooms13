@@ -42,9 +42,9 @@ jobs:
           name: Build and Push application Docker image
           command: |
               TAG=0.1.$CIRCLE_BUILD_NUM
-              docker build --build-arg SECRET_KEY=${SECRET_KEY} --build-arg SECRET_DSN=${SECRET_DSN} -t $XROBOTZYH_DOCKERHUB/openclassrooms:$TAG .
+              docker build -t $XROBOTZYH_DOCKERHUB/openclassrooms:$TAG .
               echo $XROBOTZYH_PWD_DOCKERHUB | docker login -u $XROBOTZYH_DOCKERHUB --password-stdin
-              docker push $DOCKERHUB_USERNAME/circleci-docker-example:$TAG
+              docker push $XROBOTZYH_DOCKERHUB/openclassrooms:$TAG
 
 
 
