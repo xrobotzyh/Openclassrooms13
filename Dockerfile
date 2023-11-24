@@ -1,9 +1,9 @@
 #use official python image from docker hub
-FROM python:3.9.13
+FROM cimg/python:3.9.13
 #set working directory
 WORKDIR /openclassrooms13
 #copy requirements
-COPY requirements.txt .
+COPY requirements.txt requirements.txt
 #install necessary packages
 RUN pip install -r requirements.txt
 COPY . .
