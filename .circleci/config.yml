@@ -40,7 +40,8 @@ jobs:
           command: pytest
       - run:
           name: build docker image
-          command: docker build --build-arg SECRET_KEY=${SECRET_KEY} --build-arg SECRET_DSN=${SECRET_DSN} -t xrobotzyh/openclassrooms13:1.0 .
+          command: docker build -t xrobotzyh/openclassrooms13:1.0 .
+          #command: docker build --build-arg SECRET_KEY=${SECRET_KEY} --build-arg SECRET_DSN=${SECRET_DSN} -t xrobotzyh/openclassrooms13:1.0 .
       - run:
           name: login to the dockerhub
           command: echo "${XROBOTZYH_PWD_DOCKERHUB}" | docker login -u "${XROBOTZYH_DOCKERHUB}" --password-stdin
