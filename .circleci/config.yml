@@ -68,4 +68,4 @@ workflows:
   openclassrooms13: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
     jobs:
-      - build-and-test
+      - build_and_test
