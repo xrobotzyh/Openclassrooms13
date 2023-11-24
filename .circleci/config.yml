@@ -39,15 +39,13 @@ jobs:
           # This assumes pytest is installed via the install-package step above
           command: pytest
       - run:
-          name: build docker image
-          command: docker build -t xrobotzyh/openclassrooms13:1.0 .
-          #command: docker build --build-arg SECRET_KEY=${SECRET_KEY} --build-arg SECRET_DSN=${SECRET_DSN} -t xrobotzyh/openclassrooms13:1.0 .
-      - run:
-          name: login to the dockerhub
-          command: echo "${XROBOTZYH_PWD_DOCKERHUB}" | docker login -u "${XROBOTZYH_DOCKERHUB}" --password-stdin
-      - run:
-          name: push to dockerhub
-          command: docker push xrobotzyh/openclassrooms13:1.0
+          name: Build and Push application Docker image
+          command: |
+              TAG=0.1.$CIRCLE_BUILD_NUM
+              docker build --build-arg SECRET_KEY=${SECRET_KEY} --build-arg SECRET_DSN=${SECRET_DSN} -t $XROBOTZYH_DOCKERHUB/openclassrooms:$TAG .
+              echo $XROBOTZYH_PWD_DOCKERHUB | docker login -u $XROBOTZYH_DOCKERHUB --password-stdin
+              docker push $DOCKERHUB_USERNAME/circleci-docker-example:$TAG
+
 
 
 # Invoke jobs via workflows
