@@ -31,7 +31,8 @@ class MyLettingsTestCase(TestCase):
 
     def test_letting_object_can_be_opened(self):
         response = self.client.get('/lettings/1/')
-        assert response.status_code == 404
+        # correct
+        assert response.status_code == 200
         assert b'test' in response.content
 
     def test_none_letting_object_can_be_opened(self):
