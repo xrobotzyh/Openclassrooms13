@@ -1,13 +1,20 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
-from . import views
+from .views import index, page_404, page_500
+
+
+def trigger_error(request):
+    division_by_zero = 1 / 0
+    return division_by_zero
+
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('lettings/', views.lettings_index, name='lettings_index'),
-    path('lettings/<int:letting_id>/', views.letting, name='letting'),
-    path('profiles/', views.profiles_index, name='profiles_index'),
-    path('profiles/<str:username>/', views.profile, name='profile'),
+    path('', index, name='index'),
+    path('lettings/', include('lettings.urls')),
+    path('profiles/', include('profiles.urls')),
     path('admin/', admin.site.urls),
+    path('sentry-debug/', trigger_error),
 ]
+handler404 = page_404
+handler500 = page_500
