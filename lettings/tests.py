@@ -29,7 +29,7 @@ class MyLettingsTestCase(TestCase):
         assert response.status_code == 200
         assert b'test' in response.content
 
-    def test_letting_object_can_be_opened(self):
+    def test_letting_object_can_be_opened(self):    # test2
         response = self.client.get('/lettings/1/')
         assert response.status_code == 200
         assert b'test' in response.content
