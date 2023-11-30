@@ -34,7 +34,7 @@ class MyLettingsTestCase(TestCase):
         assert response.status_code == 200
         assert b'test' in response.content
 
-    def test_none_letting_object_can_be_opened(self):
+    def test_none_letting_object_can_be_opened(self):      # test test test
         response = self.client.get('/lettings/2/')
         assert response.status_code == 404
         assert b'The page you request is not found !' in response.content
