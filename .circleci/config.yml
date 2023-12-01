@@ -44,9 +44,10 @@ jobs:
     machine: true
     steps:
       - checkout
-      - env:
-            deploy_url: $RENDER_DEPLOY_HOOK_URL
-      - run: |
+      - run:
+          name: deploy to render
+          command: |
+            deploy_url=$RENDER_DEPLOY_HOOK_URL
             curl "$deploy_url"
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
