@@ -41,7 +41,11 @@ jobs:
             echo $XROBOTZYH_PWD_DOCKERHUB | docker login -u $XROBOTZYH_DOCKERHUB --password-stdin
             docker push $XROBOTZYH_DOCKERHUB/openclassrooms:$TAG
   deploy:
-    machine: true
+    docker:
+      - image: cimg/base:2022.09
+        auth:
+          username: $XROBOTZYH_DOCKERHUB
+          password: $XROBOTZYH_PWD_DOCKERHUB
     steps:
       - checkout
       - run:
