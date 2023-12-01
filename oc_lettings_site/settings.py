@@ -4,7 +4,7 @@ import sys
 from pathlib import Path
 
 import sentry_sdk
-
+from distutils.util import strtobool
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -19,7 +19,9 @@ SENTRY_DSN = os.environ.get('SENTRY_DSN')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+
+
+DEBUG = bool(strtobool(os.environ.get('DEBUG_MODE','True')))
 
 ALLOWED_HOSTS = ['*']
 
@@ -72,23 +74,15 @@ WSGI_APPLICATION = 'oc_lettings_site.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'oc-lettings-site.sqlite3'),
+        'ENGINE': os.environ.get('DB_ENGINE', 'django.db.backends.sqlite3'),
+        'NAME': os.environ.get('DB_NAME', os.path.join(BASE_DIR, 'oc-lettings-site.sqlite3')),
+        'USER': os.environ.get('DB_USER', 'lettings'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', 'password'),
+        'HOST': os.environ.get('DB_HOST', 'localhost'),
+        'PORT': os.environ.get('DB_PORT', '5432'),
     }
 }
-if os.environ.get('DJANGO_ENV') == 'production':
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.environ.get('DB_NAME', 'database_name'),
-            'USER': os.environ.get('DB_USER', 'database_user'),
-            'PASSWORD': os.environ.get('DB_PASSWORD', 'database_password'),
-            'HOST': os.environ.get('DB_HOST', 'database_host'),
-            'PORT': os.environ.get('DB_PORT', 'database_port'),
-        }
-    }
-    DEBUG = False
-    ALLOWED_HOSTS = ['*']
+
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
