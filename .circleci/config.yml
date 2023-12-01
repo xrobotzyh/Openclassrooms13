@@ -40,7 +40,14 @@ jobs:
             docker build -t $XROBOTZYH_DOCKERHUB/openclassrooms:$TAG .
             echo $XROBOTZYH_PWD_DOCKERHUB | docker login -u $XROBOTZYH_DOCKERHUB --password-stdin
             docker push $XROBOTZYH_DOCKERHUB/openclassrooms:$TAG
-
+  deploy:
+    machine: true
+    steps:
+      - checkout
+      - env:
+            deploy_url: $RENDER_DEPLOY_HOOK_URL
+      - run: |
+            curl "$deploy_url"
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
@@ -49,6 +56,11 @@ workflows:
     jobs: # work only on branch main
       - build_and_test
       - build_and_push_docker_image:
+          filters:
+            branches:
+              only:
+                - main
+      - deploy:
           filters:
             branches:
               only:
