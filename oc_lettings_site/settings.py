@@ -5,6 +5,7 @@ from pathlib import Path
 
 import sentry_sdk
 from distutils.util import strtobool
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,8 +22,8 @@ SENTRY_DSN = os.environ.get('SENTRY_DSN')
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-DEBUG = bool(strtobool(os.environ.get('DEBUG_MODE','True')))
-
+DEBUG = bool(strtobool(os.environ.get('DEBUG_MODE', 'True')))
+ENV = os.environ.get('ENV', 'dev')
 ALLOWED_HOSTS = ['*']
 
 # Application definition
@@ -133,6 +134,8 @@ sentry_sdk.init(
     # of sampled transactions.
     # We recommend adjusting this value in production.
     profiles_sample_rate=1.0,
+    environment= ENV
+
 )
 
 LOGGING = {
