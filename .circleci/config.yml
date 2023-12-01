@@ -60,13 +60,13 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs: # work only on branch main
       - build_and_test
-      - build_and_push_docker_image
-#          filters:
-#            branches:
-#              only:
-#                - main
+      - build_and_push_docker_image:
+          filters:
+            branches:
+              only:
+                - dev
       - deploy:
           filters:
             branches:
               only:
-                - main
+                - dev
