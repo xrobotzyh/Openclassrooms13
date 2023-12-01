@@ -61,10 +61,10 @@ workflows:
     jobs: # work only on branch main
       - build_and_test
       - build_and_push_docker_image:
-          filters:
-            branches:
-              only:
-                - main
+#          filters:
+#            branches:
+#              only:
+#                - main
       - deploy:
           filters:
             branches:
