@@ -40,6 +40,7 @@ jobs:
             docker build -t $XROBOTZYH_DOCKERHUB/openclassrooms:$TAG .
             echo $XROBOTZYH_PWD_DOCKERHUB | docker login -u $XROBOTZYH_DOCKERHUB --password-stdin
             docker push $XROBOTZYH_DOCKERHUB/openclassrooms:$TAG
+            docker push $XROBOTZYH_DOCKERHUB/openclassrooms:latest
   deploy:
     docker:
       - image: cimg/base:2022.09
@@ -50,9 +51,7 @@ jobs:
       - checkout
       - run:
           name: deploy to render
-          command: |
-            deploy_url=$RENDER_DEPLOY_HOOK_URL
-            curl deploy_url
+          command: curl -X GET $RENDER_DEPLOY_HOOK_URL
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
