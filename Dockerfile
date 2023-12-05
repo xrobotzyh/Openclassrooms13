@@ -9,6 +9,5 @@ RUN pip install -r requirements.txt
 # import environment variables from circleci
 ENV PORT=8000
 # initial the database
-RUN python manage.py migrate
 # run the python project
-CMD python manage.py runserver 0.0.0.0:$PORT
+CMD docker/run.sh
