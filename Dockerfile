@@ -10,4 +10,5 @@ RUN pip install -r requirements.txt
 ENV PORT=8000
 # initial the database
 # run the python project
+RUN chmod +x docker/run.sh
 CMD docker/run.sh
