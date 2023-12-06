@@ -7,7 +7,7 @@ COPY  . /openclassrooms13/
 #install necessary packages
 RUN pip install -r requirements.txt
 # import environment variables from circleci
-COPY run.sh /openclassrooms13/docker/run.sh
+COPY docker/run.sh /openclassrooms13/docker/run.sh
 RUN chmod +x /openclassrooms13/docker/run.sh
 ENV PORT=8000
 # initial the database
