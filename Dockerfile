@@ -10,5 +10,5 @@ RUN pip install -r requirements.txt
 ENV PORT=8000
 # initial the database
 # run the python project
-RUN chmod +x docker/run.sh
-CMD docker/run.sh
+#RUN chmod +x docker/run.sh
+CMD ["sh", "-c", "chmod +x docker/run.sh && docker/run.sh"]
