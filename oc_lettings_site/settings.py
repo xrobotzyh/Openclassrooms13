@@ -81,6 +81,9 @@ DATABASES = {
         'PASSWORD': os.environ.get('DB_PASSWORD', 'password'),
         'HOST': os.environ.get('DB_HOST', 'localhost'),
         'PORT': os.environ.get('DB_PORT', '5432'),
+        'OPTIONS': {
+            'timezone': 'UTC',
+        },
     }
 }
 
@@ -134,7 +137,7 @@ sentry_sdk.init(
     # of sampled transactions.
     # We recommend adjusting this value in production.
     profiles_sample_rate=1.0,
-    environment= ENV
+    environment=ENV
 
 )
 
