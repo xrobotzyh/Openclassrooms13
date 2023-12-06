@@ -6,7 +6,7 @@ WORKDIR /openclassrooms13
 COPY  . /openclassrooms13/
 #install necessary packages
 RUN pip install -r requirements.txt
-RUN python manage.py migrate
+#RUN python manage.py migrate
 # import environment variables from circleci
 ENV PORT=8000
 # initial the database
