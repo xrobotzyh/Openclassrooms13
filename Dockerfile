@@ -11,6 +11,6 @@ RUN pip install -r requirements.txt
 ENV PORT=8000
 # initial the database
 # run the python project
-RUN chmod 777 oc-lettings-site.sqlite3
+
 
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
