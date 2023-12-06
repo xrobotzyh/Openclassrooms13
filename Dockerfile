@@ -12,4 +12,4 @@ ENV PORT=8000
 # initial the database
 # run the python project
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:$PORT"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
