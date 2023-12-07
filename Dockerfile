@@ -13,4 +13,4 @@ ENV PORT=8000
 # run the python project
 
 
-CMD docker/run.sh
+CMD python manage.py runserver 0.0.0.0:$PORT
