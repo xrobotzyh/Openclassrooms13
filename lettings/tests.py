@@ -1,8 +1,4 @@
 # Create your tests here.
-import os
-
-import pytest
-from django.conf import settings
 from django.test import TestCase
 
 from .models import Letting, Address
