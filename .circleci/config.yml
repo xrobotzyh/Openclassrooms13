@@ -37,7 +37,7 @@ jobs:
           name: Build and Push application docker image
           command: |
             sudo chmod +x docker/run.sh
-            sudo chmod 777 oc-lettings-site.sqlite3
+            sudo chmod ug+rw oc-lettings-site.sqlite3
             TAG=0.1.$CIRCLE_BUILD_NUM
             docker build -t $XROBOTZYH_DOCKERHUB/openclassrooms:$TAG -t $XROBOTZYH_DOCKERHUB/openclassrooms:latest .
             echo $XROBOTZYH_PWD_DOCKERHUB | docker login -u $XROBOTZYH_DOCKERHUB --password-stdin
