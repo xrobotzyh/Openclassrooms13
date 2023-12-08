@@ -1,7 +1,9 @@
 from django.contrib import admin
 from django.urls import path, include
 
+from . import settings
 from .views import index, page_404, page_500
+from django.contrib.staticfiles.urls import static
 
 
 def trigger_error(request):
@@ -16,5 +18,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('sentry-debug/', trigger_error),
 ]
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 handler404 = page_404
 handler500 = page_500
