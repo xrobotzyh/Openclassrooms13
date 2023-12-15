@@ -53,7 +53,7 @@ jobs:
       - checkout
       - run:
           name: deploy to render
-          command: curl -X GET $RENDER_DEPLOY_HOOK_URL
+          command: curl -X GET $RENDER_DEPLOY_HOOK_URL_SQLITE
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
