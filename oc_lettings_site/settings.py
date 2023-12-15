@@ -4,8 +4,6 @@ from pathlib import Path
 import sentry_sdk
 from distutils.util import strtobool
 
-from django.contrib import staticfiles
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -38,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'lettings.apps.LettingsConfig',
     'profiles.apps.ProfilesConfig',
+    # 'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
@@ -48,7 +47,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'oc_lettings_site.urls'
@@ -120,10 +119,19 @@ USE_L10N = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static", ]
+
+# WHITENOISE_ENABLED = os.getenv('WHITENOISE_ENABLED')
+# if WHITENOISE_ENABLED == 'true':
+#     MIDDLEWARE.append('whitenoise.middleware.WhiteNoiseMiddleware')
+#     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+#     # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#     WHITENOISE_USE_FINDERS = True
+#     WHITENOISE_MANIFEST_STRICT = False
+#     WHITENOISE_ALLOW_ALL_ORIGINS = True
 
 # settings.py
 
