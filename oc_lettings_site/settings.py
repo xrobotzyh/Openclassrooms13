@@ -113,27 +113,16 @@ USE_I18N = True
 
 USE_L10N = True
 
-# USE_TZ = False
+USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static", ]
-
-# WHITENOISE_ENABLED = os.getenv('WHITENOISE_ENABLED')
-# if WHITENOISE_ENABLED == 'true':
-#     MIDDLEWARE.append('whitenoise.middleware.WhiteNoiseMiddleware')
-#     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-#     # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-#     WHITENOISE_USE_FINDERS = True
-#     WHITENOISE_MANIFEST_STRICT = False
-#     WHITENOISE_ALLOW_ALL_ORIGINS = True
-
-# settings.py
 
 sentry_sdk.init(
     dsn=SENTRY_DSN,
