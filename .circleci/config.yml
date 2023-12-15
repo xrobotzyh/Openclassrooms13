@@ -54,7 +54,7 @@ jobs:
       - run:
           name: deploy to render
           command: curl -X GET $RENDER_DEPLOY_HOOK_URL_SQLITE
-# Invoke jobs via workflows
+# Invoke jobs via workflows.
 # See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
   build_and_deploy: # This is the name of the workflow, feel free to change it to better match your workflow.
