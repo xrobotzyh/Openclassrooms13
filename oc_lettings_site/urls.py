@@ -18,6 +18,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('sentry-debug/', trigger_error),
 ]
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+# urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 handler404 = page_404
 handler500 = page_500
