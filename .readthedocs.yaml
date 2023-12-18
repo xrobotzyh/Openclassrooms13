@@ -32,6 +32,6 @@ python:
      - method: pip
        path: .
        extra_requirements:
-         - requirements.txt
+         - -r requirements.txt
 
 
